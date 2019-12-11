@@ -7,9 +7,11 @@ with open('day6a.csv', 'r') as file:
         data.append(row[0].split(')'))
 
 def inheritance_map(orbits):
+    # Create dictionary mapping object to what it orbits around 
     return {i[1]: i[0] for i in orbits}
 
 def find_path_of_inheritance(orbits, planet, count=0):
+    # Recursively search through to find the number of degrees of orbit an object has
     if orbits[planet] == 'COM':
         return count+1
     else:

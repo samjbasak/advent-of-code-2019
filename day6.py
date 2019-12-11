@@ -19,9 +19,11 @@ def find_path_of_inheritance(orbits, planet, count=0):
     else:
         return find_path_of_inheritance(orbits, orbits[planet], count+1)
 
+def calculate_total_inheritance(data):
+    map_of_inheritance = inheritance_map(data)
+    total = 0
+    for i in map_of_inheritance:
+        total += find_path_of_inheritance(map_of_inheritance, i)
+    return total
 
-total = 0
-for i in inheritance_map(data):
-    total += find_path_of_inheritance(inheritance_map(data), i)
-
-print(total)
+print(calculate_total_inheritance(data))

@@ -4,13 +4,9 @@ data = []
 with open('day6a.csv', 'r') as file:
     reader = csv.reader(file)
     for row in reader:
-        data.append(row[0])
-
-def split_orbits(orbits):
-    return [orbit.split(')') for orbit in orbits]
+        data.append(row[0].split(')'))
 
 def inheritance_map(orbits):
-    orbits = split_orbits(orbits)
     return {i[1]: i[0] for i in orbits}
 
 def find_path_of_inheritance(orbits, planet, count=0):

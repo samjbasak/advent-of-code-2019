@@ -47,11 +47,16 @@ def non_reducable_numbers(row, column, prime_numbers):
             return False
     return True
 
-def reduce_coord(start_coord, reduced_coord=None):
+def reduce_coord(start_coord, reduced_coord=False):
+    if not reduced_coord:
+        reduced_coord = start_coord.copy()
+    print(reduced_coord)
     for prime in prime_numbers:
         if reduced_coord[0] % prime == 0 and reduced_coord[1] % prime == 0:
-            return reduce_coord([start_coord, int(reduced_coord[0]/prime), int(reduced_coord[1]/prime)])
-    return
+            return reduce_coord(start_coord, [int(reduced_coord[0]/prime), int(reduced_coord[1]/prime)])
+    return start_coord, reduce_coord
+
+print(reduce_coord([10, 20]))
 
 def find_coordinates(asteroid_input):
     coords = []
